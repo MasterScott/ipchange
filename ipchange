@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#####~CONFIG~START~########
+mask="netmaskhere"
+interface="interfacehere"
+gateway="gatewayhere"
+#####~CONFIG~END~#########
+
+clear
+
+echo """
+WARNING: OPEN FOR CONFIG
+
++ Usage + 
+  ipchange 192.168.1.1337
+"""
+
+if [ $# -eq 0 ] ; then
+    exit 1
+fi
+
+sudo ifconfig $interface $1 netmask $mask && route add default gw $gateway $interface
+clear
+echo -e "Configuring Interface [\e[32mOK!\e[39m]"
+sleep 0.5
+echo -e "Configuring Netmask [\e[32mOK!\e[39m]"
+sleep 0.5
+echo -e "Configuring Route [\e[32mOK!\e[39m]"
+sleep 0.5
+echo -e "Configuring Gateway [\e[32mOK!\e[39m]"
+sleep 0.5
+echo -e "Setup [\e[32mCOMPLETE!\e[39m]"
